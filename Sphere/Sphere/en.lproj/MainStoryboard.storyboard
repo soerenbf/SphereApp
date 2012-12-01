@@ -19,7 +19,7 @@
                                     <constraint firstAttribute="height" constant="41" id="pxB-lI-WNa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="fb_login_button.png">
+                                <state key="normal" backgroundImage="facebook_login.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -31,12 +31,12 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="YXH-KQ-ztu" secondAttribute="bottom" constant="128" id="16p-tR-Jcy"/>
-                            <constraint firstItem="QyT-VO-MzU" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="6oN-No-hIW"/>
-                            <constraint firstItem="QyT-VO-MzU" firstAttribute="top" secondItem="3" secondAttribute="top" constant="103" id="uah-hc-9Jg"/>
-                            <constraint firstItem="YXH-KQ-ztu" firstAttribute="centerX" secondItem="QyT-VO-MzU" secondAttribute="centerX" type="default" id="wIF-Uo-nAd"/>
+                            <constraint firstAttribute="bottom" secondItem="YXH-KQ-ztu" secondAttribute="bottom" constant="65" id="5aZ-Gp-OF4"/>
+                            <constraint firstItem="QyT-VO-MzU" firstAttribute="centerX" secondItem="YXH-KQ-ztu" secondAttribute="centerX" type="default" id="GE0-00-Uul"/>
+                            <constraint firstItem="QyT-VO-MzU" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="glP-Rd-BN8"/>
+                            <constraint firstItem="QyT-VO-MzU" firstAttribute="top" secondItem="3" secondAttribute="top" constant="46" id="v0Y-Xj-D5m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9yA-EN-mfI"/>
@@ -241,8 +241,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fb_login_button.png" width="215" height="41"/>
-        <image name="sphere_logo.png" width="155" height="153"/>
+        <image name="facebook_login.png" width="229" height="41"/>
+        <image name="sphere_logo.png" width="206" height="257"/>
         <image name="three_lines@2x.png" width="20" height="20"/>
     </resources>
     <classes>
@@ -252,7 +252,6 @@
         <class className="SphereListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereListViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showMenuAction:"/>
                 <relationship kind="outlet" name="menuTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="menuTags" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="menuUserPicture" candidateClass="UIImageView"/>
