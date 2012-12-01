@@ -67,9 +67,46 @@
                                     <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bx8-CM-LvY" userLabel="Menu table view">
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" white="0.25" alpha="1" colorSpace="calibratedWhite"/>
+                                        <view key="tableHeaderView" contentMode="scaleToFill" id="FLu-kE-e3L" userLabel="Table view header">
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIw-U6-qPy" userLabel="Username">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="v7b-Se-4eX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12s-7T-OX4" userLabel="Tags">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="gS3-IV-FbS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZW-bG-wde">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="8nz-4f-k1R"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VZW-bG-wde" firstAttribute="top" secondItem="FLu-kE-e3L" secondAttribute="top" constant="20" symbolic="YES" type="default" id="CEb-bF-iBJ"/>
+                                                <constraint firstItem="12s-7T-OX4" firstAttribute="top" secondItem="FLu-kE-e3L" secondAttribute="top" constant="53" id="YBV-XO-JaN"/>
+                                                <constraint firstAttribute="bottom" secondItem="VZW-bG-wde" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="cx4-9V-kLq"/>
+                                                <constraint firstItem="ZIw-U6-qPy" firstAttribute="leading" secondItem="FLu-kE-e3L" secondAttribute="leading" constant="93" id="j1d-SE-B9j"/>
+                                                <constraint firstItem="VZW-bG-wde" firstAttribute="leading" secondItem="FLu-kE-e3L" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ksk-YI-sjg"/>
+                                                <constraint firstItem="12s-7T-OX4" firstAttribute="trailing" secondItem="ZIw-U6-qPy" secondAttribute="trailing" type="default" id="nHC-U4-KIY"/>
+                                                <constraint firstItem="ZIw-U6-qPy" firstAttribute="top" secondItem="FLu-kE-e3L" secondAttribute="top" constant="31" id="s8L-YR-QsJ"/>
+                                                <constraint firstItem="12s-7T-OX4" firstAttribute="leading" secondItem="ZIw-U6-qPy" secondAttribute="leading" type="default" id="u8O-SI-ws4"/>
+                                            </constraints>
+                                        </view>
                                         <prototypes>
                                             <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="menuCell" textLabel="R5B-B6-ZMd" style="IBUITableViewCellStyleDefault" id="CNs-54-7We">
-                                                <rect key="frame" x="0.0" y="22" width="260" height="44"/>
+                                                <rect key="frame" x="0.0" y="122" width="260" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="260" height="43"/>
@@ -114,7 +151,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="qEt-IF-wmz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-K4-Tjb">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-K4-Tjb" userLabel="Username">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="171" id="0m0-gj-2Nu"/>
                                                     </constraints>
@@ -122,7 +159,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-x5-jV8">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-x5-jV8" userLabel="Tags">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="aRH-Lm-R4Q"/>
                                                     </constraints>
@@ -174,6 +211,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuTableView" destination="Bx8-CM-LvY" id="53e-Id-tr2"/>
+                        <outlet property="menuTags" destination="12s-7T-OX4" id="pSZ-No-Um8"/>
+                        <outlet property="menuUserPicture" destination="VZW-bG-wde" id="r7Z-ZK-wMs"/>
+                        <outlet property="menuUsername" destination="ZIw-U6-qPy" id="eJR-Y5-FOG"/>
                         <outlet property="sphereUserTableView" destination="8c8-d1-xnX" id="NP7-Se-96g"/>
                     </connections>
                 </viewController>
@@ -214,6 +254,9 @@
             <relationships>
                 <relationship kind="action" name="showMenuAction:"/>
                 <relationship kind="outlet" name="menuTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuTags" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuUserPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="menuUsername" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="sphereUserTableView" candidateClass="UITableView"/>
             </relationships>
         </class>

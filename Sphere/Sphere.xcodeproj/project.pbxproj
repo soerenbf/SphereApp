@@ -55,6 +55,7 @@
 		263429D616696DF900280B39 /* kbj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 263429D216696DF900280B39 /* kbj.jpg */; };
 		263429D716696DF900280B39 /* sbf.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 263429D316696DF900280B39 /* sbf.jpg */; };
 		263429D91669795100280B39 /* three_lines@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 263429D81669795100280B39 /* three_lines@2x.png */; };
+		26870390166A1B1F00B7525E /* UIImage+ScaleAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687038F166A1B1F00B7525E /* UIImage+ScaleAndCrop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		263429D216696DF900280B39 /* kbj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kbj.jpg; sourceTree = "<group>"; };
 		263429D316696DF900280B39 /* sbf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sbf.jpg; sourceTree = "<group>"; };
 		263429D81669795100280B39 /* three_lines@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "three_lines@2x.png"; sourceTree = "<group>"; };
+		2687038E166A1B1F00B7525E /* UIImage+ScaleAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ScaleAndCrop.h"; sourceTree = "<group>"; };
+		2687038F166A1B1F00B7525E /* UIImage+ScaleAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ScaleAndCrop.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +322,7 @@
 		2634299D16695C1500280B39 /* NYXImagesKit */ = {
 			isa = PBXGroup;
 			children = (
+				2687038C166A1AB200B7525E /* Self added */,
 				263429A716695C7700280B39 /* Categories */,
 				263429A316695C5B00280B39 /* Classes */,
 				2634299E16695C3E00280B39 /* Helper */,
@@ -366,6 +370,15 @@
 				263429B716695C8B00280B39 /* UIImage+Saving.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		2687038C166A1AB200B7525E /* Self added */ = {
+			isa = PBXGroup;
+			children = (
+				2687038E166A1B1F00B7525E /* UIImage+ScaleAndCrop.h */,
+				2687038F166A1B1F00B7525E /* UIImage+ScaleAndCrop.m */,
+			);
+			name = "Self added";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +520,7 @@
 				263429BD16695C8B00280B39 /* UIImage+Resizing.m in Sources */,
 				263429BE16695C8B00280B39 /* UIImage+Rotating.m in Sources */,
 				263429BF16695C8B00280B39 /* UIImage+Saving.m in Sources */,
+				26870390166A1B1F00B7525E /* UIImage+ScaleAndCrop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +692,7 @@
 				263429651669303500280B39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		263429661669303500280B39 /* Build configuration list for PBXNativeTarget "SphereTests" */ = {
 			isa = XCConfigurationList;
@@ -686,6 +701,7 @@
 				263429681669303500280B39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

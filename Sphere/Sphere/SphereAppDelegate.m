@@ -43,4 +43,41 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)customizeAppearance
+{
+    UINavigationBar *navBar = self.window.rootViewController.navigationController.navigationBar;
+    
+    //Create a image view
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation_bar.png"]];
+    imgView.frame = navBar.bounds;
+    imgView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    
+    //Create a gradient layer
+    //Thanks to Kris Johnson's code
+    //https://bitbucket.org/KristopherJohnson/gradientbuttons/src/tip/Classes/GradientButton.m
+    CAGradientLayer *shineLayer = [CAGradientLayer layer];
+    shineLayer.frame = imgView.bounds;
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         nil];
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.8f],
+                            [NSNumber numberWithFloat:1.0f],
+                            nil];
+    
+    
+    //Add the gradient layer to the imageView
+    [imgView.layer insertSublayer:shineLayer atIndex:1];
+    
+    //Add the imageview to the navbar
+    //[navBar insertSubview:imgView atIndex:1];
+}
+
 @end

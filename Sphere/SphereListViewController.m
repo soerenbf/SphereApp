@@ -9,6 +9,7 @@
 #import "SphereListViewController.h"
 #import "SphereUserCell.h"
 #import "UIImage+Resizing.h"
+#import "UIImage+ScaleAndCrop.h"
 
 @interface SphereListViewController ()
 
@@ -100,12 +101,22 @@ BOOL menuShown = NO;
     
     self.menuTableView.dataSource = self;
     self.menuTableView.delegate = self;
+    
+    [self setupMenu];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark constructor methods
+
+- (void)setupMenu{
+    self.menuUserPicture.image = [[UIImage imageNamed:@"user_placeholder.png"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
+    self.menuUsername.text = @"Current user";
+    self.menuTags.text = @"Tag, Tag, Tag";
 }
 
 #pragma mark UITableViewDataSource
@@ -173,21 +184,8 @@ BOOL menuShown = NO;
     
     cell.tagsLabel.text = tagsString;
     
-    UIImage *userPicture = [concreteUser objectForKey:@"picture"];
-    
     //Scale and crop the picture.
-    CGSize scale;
-    CGFloat size = 60.0f;
-    
-    if (userPicture.size.height > userPicture.size.width) {
-        scale = CGSizeMake(size, userPicture.size.height/(userPicture.size.width/size));
-    }else{
-        scale = CGSizeMake(userPicture.size.width/(userPicture.size.height/size), size);
-    }
-    
-    UIImage *scaledAndCropped = [[userPicture scaleToFitSize:scale] cropToSize:(CGSizeMake(size, size)) usingMode:NYXCropModeCenter];
-    
-    cell.userPicture.image = scaledAndCropped;
+    cell.userPicture.image = [[concreteUser objectForKey:@"picture"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
     
     return cell;
 }

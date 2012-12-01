@@ -15,7 +15,9 @@
 
 //Menu.
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *menuUserPicture;
+@property (weak, nonatomic) IBOutlet UILabel *menuUsername;
+@property (weak, nonatomic) IBOutlet UILabel *menuTags;
 
 
 @end
