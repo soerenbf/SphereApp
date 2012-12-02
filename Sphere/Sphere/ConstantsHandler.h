@@ -19,4 +19,8 @@
 //Fonts.
 @property (strong, nonatomic) UIFont *FONT_ORIGIN_REGULAR;
 
+//Retina
+@property (nonatomic, assign, getter=isRetina) BOOL retina;
+@property (nonatomic, assign) int RETINA_FACTOR;
+
 @end

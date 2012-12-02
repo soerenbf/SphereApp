@@ -45,6 +45,11 @@ dispatch_queue_t fetchQ = NULL;
     [UIView commitAnimations];
 }
 
+- (void)showSettingsAction:(id)sender
+{
+    
+}
+
 
 #pragma mark initiation methods
 
@@ -160,10 +165,18 @@ dispatch_queue_t fetchQ = NULL;
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 45.0f, 34.0f)];
     [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlStateNormal];
     [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlEventTouchDown];
-    leftButton.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.0f];
+    leftButton.backgroundColor = [UIColor clearColor];
     [leftButton addTarget:self action:@selector(showMenuAction:) forControlEvents:UIControlEventTouchDown];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 45.0f, 34.0f)];
+    [rightButton setImage:[UIImage imageNamed:@"settings_button.png"] forState:UIControlStateNormal];
+    [rightButton setImage:[UIImage imageNamed:@"settings_button.png"] forState:UIControlEventTouchDown];
+    rightButton.backgroundColor = [UIColor clearColor];
+    [rightButton addTarget:self action:@selector(showSettingsAction:) forControlEvents:UIControlEventTouchDown];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
 }
 
 - (void)resetInterface
@@ -293,7 +306,7 @@ dispatch_queue_t fetchQ = NULL;
     cell.tagsLabel.text = tagsString;
     
     //Scale and crop the picture.
-    cell.userPicture.image = [[concreteUser objectForKey:@"picture"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
+    cell.userPicture.image = [[concreteUser objectForKey:@"picture"] scaleAndCropToFit:(60.0f * [[ConstantsHandler sharedConstants] RETINA_FACTOR]) usingMode:NYXCropModeCenter];
     
     //For expanding.
     cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;

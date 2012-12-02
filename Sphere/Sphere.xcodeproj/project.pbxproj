@@ -82,6 +82,8 @@
 		268703FE166BA68500B7525E /* sphere_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 268703FC166BA68500B7525E /* sphere_logo@2x.png */; };
 		26870400166BA6F300B7525E /* fav_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 268703FF166BA6F300B7525E /* fav_icon.png */; };
 		26870402166BA6F900B7525E /* fav_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870401166BA6F900B7525E /* fav_icon@2x.png */; };
+		26870405166BAD0E00B7525E /* settings_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870403166BAD0E00B7525E /* settings_button.png */; };
+		26870406166BAD0E00B7525E /* settings_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870404166BAD0E00B7525E /* settings_button@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +196,8 @@
 		268703FC166BA68500B7525E /* sphere_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sphere_logo@2x.png"; sourceTree = "<group>"; };
 		268703FF166BA6F300B7525E /* fav_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fav_icon.png; path = ../fav_icon.png; sourceTree = "<group>"; };
 		26870401166BA6F900B7525E /* fav_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fav_icon@2x.png"; path = "../fav_icon@2x.png"; sourceTree = "<group>"; };
+		26870403166BAD0E00B7525E /* settings_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_button.png; sourceTree = "<group>"; };
+		26870404166BAD0E00B7525E /* settings_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_button@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +339,8 @@
 		26342975166936EE00280B39 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				26870403166BAD0E00B7525E /* settings_button.png */,
+				26870404166BAD0E00B7525E /* settings_button@2x.png */,
 				268703B1166A814700B7525E /* three_lines.png */,
 				268703B2166A814700B7525E /* three_lines@2x.png */,
 				26342971166936EB00280B39 /* fb_login_button.png */,
@@ -634,6 +640,8 @@
 				268703FE166BA68500B7525E /* sphere_logo@2x.png in Resources */,
 				26870400166BA6F300B7525E /* fav_icon.png in Resources */,
 				26870402166BA6F900B7525E /* fav_icon@2x.png in Resources */,
+				26870405166BAD0E00B7525E /* settings_button.png in Resources */,
+				26870406166BAD0E00B7525E /* settings_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
