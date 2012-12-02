@@ -20,13 +20,24 @@
 
 @implementation SphereListViewController
 
-//Placeholder values.
+//***Placeholder values***.
 NSDictionary *kasperBF;
 NSDictionary *kasperBJ;
 NSDictionary *soerenBF;
 NSDictionary *boP;
 NSDictionary *user;
+
 NSArray *users;
+
+//***Menu***
+
+NSDictionary *sharing;
+NSDictionary *mode;
+NSDictionary *filters;
+
+NSArray *menuSections;
+
+//***End of placeholder values***.
 
 //Classwide variables.
 BOOL menuShown = NO;
@@ -98,6 +109,14 @@ dispatch_queue_t fetchQ = NULL;
     
     users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, nil];
     
+    //***********************************MENU*************************************.
+    
+    sharing = [[NSDictionary alloc] initWithObjectsAndKeys:@"Sharing", @"name", [[NSArray alloc] initWithObjects:@"Broadcast", @"Come talk to me!", nil], @"listItems", nil];
+    mode = [[NSDictionary alloc] initWithObjectsAndKeys:@"Mode", @"name", [[NSArray alloc] initWithObjects:@"Study", @"Spare time", @"Work", nil], @"listItems", nil];
+    filters = [[NSDictionary alloc] initWithObjectsAndKeys:@"Filters", @"name", [[NSArray alloc] initWithObjects:@"Age", @"Gender", nil], @"listItems", nil];
+    
+    menuSections = [[NSArray alloc] initWithObjects:sharing, mode, filters, nil];
+    
     //************************END OF PLACEHOLDER CONTENT**************************.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetInterface) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -147,7 +166,7 @@ dispatch_queue_t fetchQ = NULL;
     [self.menuNavigationBar setBackgroundImage:[UIImageView gradientTextureWithFrame:self.menuNavigationBar.bounds withImage:[UIImage imageNamed:@"navigation_bar.png"]].image forBarMetrics:UIBarMetricsDefault];
     self.menuNavigationItem.titleView = [UIView customTitle:@"Quick settings" withColor:[[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE] inFrame:self.navigationItem.titleView.frame];
     
-    self.menuUserPicture.image = [[UIImage imageNamed:@"user_placeholder.png"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
+    self.menuUserPicture.image = [[UIImage imageNamed:@"user_placeholder.png"] scaleAndCropToFit:(60.0f * [[ConstantsHandler sharedConstants] RETINA_FACTOR]) usingMode:NYXCropModeCenter];
     
     self.menuUserPicture.layer.shadowColor = [UIColor blackColor].CGColor;
     self.menuUserPicture.layer.shadowOffset = CGSizeMake(0, 0);
@@ -157,6 +176,7 @@ dispatch_queue_t fetchQ = NULL;
     
     self.menuUsername.text = @"Current user";
     self.menuUsername.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    self.menuUsername.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
     self.menuTags.text = @"Tag, Tag, Tag";
 }
 
@@ -164,15 +184,13 @@ dispatch_queue_t fetchQ = NULL;
 {
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 45.0f, 34.0f)];
     [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlStateNormal];
-    [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlEventTouchDown];
     leftButton.backgroundColor = [UIColor clearColor];
     [leftButton addTarget:self action:@selector(showMenuAction:) forControlEvents:UIControlEventTouchDown];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 45.0f, 34.0f)];
-    [rightButton setImage:[UIImage imageNamed:@"settings_button.png"] forState:UIControlStateNormal];
-    [rightButton setImage:[UIImage imageNamed:@"settings_button.png"] forState:UIControlEventTouchDown];
+    [rightButton setImage:[UIImage imageNamed:@"cogwheel.png"] forState:UIControlStateNormal];
     rightButton.backgroundColor = [UIColor clearColor];
     [rightButton addTarget:self action:@selector(showSettingsAction:) forControlEvents:UIControlEventTouchDown];
     
@@ -191,7 +209,7 @@ dispatch_queue_t fetchQ = NULL;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView.tag == 2) {
-        return 3;
+        return [menuSections count];
     }
     return 1;
 }
@@ -199,7 +217,7 @@ dispatch_queue_t fetchQ = NULL;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 2) {
-        return @"Section title";
+        return [[menuSections objectAtIndex:section] objectForKey:@"name"];
     }
     return nil;
 }
@@ -207,7 +225,7 @@ dispatch_queue_t fetchQ = NULL;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 2) {
-        return 3;
+        return [[[menuSections objectAtIndex:section] objectForKey:@"listItems"] count];
     }
     return users.count;
 }
@@ -233,6 +251,7 @@ dispatch_queue_t fetchQ = NULL;
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
         headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+        headerLabel.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
         
         [headerView addSubview:headerLabel];
         return headerView;
@@ -290,6 +309,7 @@ dispatch_queue_t fetchQ = NULL;
     NSDictionary *concreteUser = [users objectAtIndex:indexPath.row];
     
     cell.nameLabel.text = [concreteUser objectForKey:@"name"];
+    cell.nameLabel.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
     
     //Concatenate tags into one string.
     NSString *tagsString = @"";
@@ -324,6 +344,10 @@ dispatch_queue_t fetchQ = NULL;
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    cell.textLabel.text = [[[menuSections objectAtIndex:indexPath.section] objectForKey:@"listItems"] objectAtIndex:indexPath.row];
         
     return cell;
 }
@@ -332,8 +356,7 @@ dispatch_queue_t fetchQ = NULL;
 
 - (void)reloadTableViewDataSource
 {
-	//  should be calling your tableviews data source model to reload
-	//  put here just for demo
+	[self.sphereUserTableView reloadData];
 	_reloading = YES;	
 }
 

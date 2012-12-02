@@ -26,7 +26,8 @@
     self.COLOR_WHITE = [UIColor colorWithRed:233.0f/255.0f green:234.0f/255.0f blue:234.0f/255.0f alpha:1.0f];
     
     //Fonts.
-    self.FONT_ORIGIN_REGULAR = [UIFont fontWithName:@"Origin-Regular" size:18.0f];
+    self.FONT_NAVBAR_TITLE = [self originType:fontTypeRegular FontSize:18.0f];
+    self.FONT_HEADER = [self originType:fontTypeExtraBold FontSize:14.0f];
     
     //Check for retina display.
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
@@ -39,6 +40,26 @@
     }
     
     return self;
+}
+
+//Fonts.
+
+- (UIFont *)originType:(fontType)type FontSize:(CGFloat)size
+{
+    switch (type) {
+        case fontTypeLight:
+            return [UIFont fontWithName:@"Origin-Light" size:size];
+            break;
+        case fontTypeBold:
+            return [UIFont fontWithName:@"Origin-Bold" size:size];
+            break;
+        case fontTypeExtraBold:
+            return [UIFont fontWithName:@"Origin-ExtraBold" size:size];
+            break;
+        default:
+            break;
+    }
+    return [UIFont fontWithName:@"Origin-Regular" size:size];
 }
 
 @end

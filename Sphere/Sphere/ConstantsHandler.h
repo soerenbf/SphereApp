@@ -10,14 +10,25 @@
 
 @interface ConstantsHandler : NSObject
 
+typedef enum fontType{
+    fontTypeLight,
+    fontTypeRegular,
+    fontTypeBold,
+    fontTypeExtraBold
+} fontType;
+
 + (id)sharedConstants;
+
+//Fonts.
+- (UIFont *)originType:(fontType)type FontSize:(CGFloat)size;
 
 //Colors.
 @property (strong, nonatomic) UIColor *COLOR_CYANID_BLUE;
 @property (strong, nonatomic) UIColor *COLOR_WHITE;
 
 //Fonts.
-@property (strong, nonatomic) UIFont *FONT_ORIGIN_REGULAR;
+@property (strong, nonatomic) UIFont *FONT_NAVBAR_TITLE;
+@property (strong, nonatomic) UIFont *FONT_HEADER;
 
 //Retina
 @property (nonatomic, assign, getter=isRetina) BOOL retina;

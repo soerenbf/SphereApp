@@ -15,7 +15,7 @@
     UIView *customTitleView = [[UIView alloc] init];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 3.0f, 200.0f, 30.0f)];
     titleLabel.text = title;
-    titleLabel.font = [[ConstantsHandler sharedConstants] FONT_ORIGIN_REGULAR];
+    titleLabel.font = [[ConstantsHandler sharedConstants] FONT_NAVBAR_TITLE];
     titleLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.shadowColor = [UIColor blackColor];
