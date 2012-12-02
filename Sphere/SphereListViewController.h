@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface SphereListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "EGORefreshTableHeaderView.h"
+
+#import "UIImageView+GradientTexture.h"
+#import "UIView+CustomTitleView.h"
+
+@interface SphereListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate>{
+    
+    //EGOResfreshHeaderView.
+    EGORefreshTableHeaderView *_refreshHeaderView;
+	BOOL _reloading;
+}
 
 //Main screen.
 @property (weak, nonatomic) IBOutlet UITableView *sphereUserTableView;
@@ -18,6 +29,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuUserPicture;
 @property (weak, nonatomic) IBOutlet UILabel *menuUsername;
 @property (weak, nonatomic) IBOutlet UILabel *menuTags;
+@property (weak, nonatomic) IBOutlet UINavigationBar *menuNavigationBar;
+@property (weak, nonatomic) IBOutlet UIView *menuTableViewBackground;
+@property (weak, nonatomic) IBOutlet UINavigationItem *menuNavigationItem;
+
+@property (nonatomic, strong) NSIndexPath *selectedRow;
 
 
 @end

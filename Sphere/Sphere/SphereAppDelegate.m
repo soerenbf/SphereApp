@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Storm of Brains. All rights reserved.
 //
 
+#define CYANID_BLUE = [UIColor colorWithRed:27.0f/255.0f Green:177/255.0f Blue:232.0f/255.0f Alpha:1.0f];
+
 #import "SphereAppDelegate.h"
 
 @implementation SphereAppDelegate
@@ -13,6 +15,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self customizeAppearance];
     return YES;
 }
 							
@@ -45,39 +48,16 @@
 
 - (void)customizeAppearance
 {
-    UINavigationBar *navBar = self.window.rootViewController.navigationController.navigationBar;
+    NSArray *controllers = self.window.rootViewController.childViewControllers;
     
-    //Create a image view
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation_bar.png"]];
-    imgView.frame = navBar.bounds;
-    imgView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    
-    //Create a gradient layer
-    //Thanks to Kris Johnson's code
-    //https://bitbucket.org/KristopherJohnson/gradientbuttons/src/tip/Classes/GradientButton.m
-    CAGradientLayer *shineLayer = [CAGradientLayer layer];
-    shineLayer.frame = imgView.bounds;
-    shineLayer.colors = [NSArray arrayWithObjects:
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                         nil];
-    shineLayer.locations = [NSArray arrayWithObjects:
-                            [NSNumber numberWithFloat:0.0f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:0.8f],
-                            [NSNumber numberWithFloat:1.0f],
-                            nil];
+    for (UIViewController *controller in controllers) {
+        UINavigationBar *navBar = controller.navigationController.navigationBar;
+        
+        //Add the imageview to the navbar
+        [navBar insertSubview:[UIImageView gradientTextureWithFrame:navBar.bounds withImage:[UIImage imageNamed:@"navigation_bar.png"]] atIndex:1];
+    }
     
     
-    //Add the gradient layer to the imageView
-    [imgView.layer insertSublayer:shineLayer atIndex:1];
-    
-    //Add the imageview to the navbar
-    //[navBar insertSubview:imgView atIndex:1];
 }
 
 @end

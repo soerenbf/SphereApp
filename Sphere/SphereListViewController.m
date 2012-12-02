@@ -8,8 +8,11 @@
 
 #import "SphereListViewController.h"
 #import "SphereUserCell.h"
+
 #import "UIImage+Resizing.h"
 #import "UIImage+ScaleAndCrop.h"
+
+#import "ConstantsHandler.h"
 
 @interface SphereListViewController ()
 
@@ -26,20 +29,19 @@ NSDictionary *user;
 NSArray *users;
 
 //Classwide variables.
-
 BOOL menuShown = NO;
+BOOL cellExpanded = NO;
+dispatch_queue_t fetchQ = NULL;
 
 #pragma mark IBActions
 
-- (IBAction)showMenuAction:(id)sender
+- (void)showMenuAction:(id)sender
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.17f];
     
     [self toggleMenu];
-    
-    menuShown = !menuShown;
-    
+
     [UIView commitAnimations];
 }
 
@@ -93,8 +95,7 @@ BOOL menuShown = NO;
     
     //************************END OF PLACEHOLDER CONTENT**************************.
     
-    self.navigationController.navigationBarHidden = NO;
-    [self.navigationItem setHidesBackButton:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetInterface) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     self.sphereUserTableView.dataSource = self;
     self.sphereUserTableView.delegate = self;
@@ -102,6 +103,9 @@ BOOL menuShown = NO;
     self.menuTableView.dataSource = self;
     self.menuTableView.delegate = self;
     
+    fetchQ = dispatch_queue_create("fetchQ", NULL);
+    
+    [self setupMainLayout];
     [self setupMenu];
 }
 
@@ -113,10 +117,60 @@ BOOL menuShown = NO;
 
 #pragma mark constructor methods
 
-- (void)setupMenu{
+- (void)setupMainLayout
+{
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.titleView = [UIView customTitle:@"Sphere" withColor:[[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE] inFrame:self.navigationItem.titleView.frame];
+    [self setupBarButtonItems];
+    
+    self.sphereUserTableView.backgroundColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    
+    //EGORefresh
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.sphereUserTableView.bounds.size.height, self.view.frame.size.width, self.sphereUserTableView.bounds.size.height)];
+		view.delegate = self;
+		[self.sphereUserTableView addSubview:view];
+		_refreshHeaderView = view;
+	}
+    [_refreshHeaderView refreshLastUpdatedDate];
+}
+
+- (void)setupMenu
+{
+    [self.menuNavigationBar setBackgroundImage:[UIImageView gradientTextureWithFrame:self.menuNavigationBar.bounds withImage:[UIImage imageNamed:@"navigation_bar.png"]].image forBarMetrics:UIBarMetricsDefault];
+    self.menuNavigationItem.titleView = [UIView customTitle:@"Quick settings" withColor:[[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE] inFrame:self.navigationItem.titleView.frame];
+    
     self.menuUserPicture.image = [[UIImage imageNamed:@"user_placeholder.png"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
+    
+    self.menuUserPicture.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.menuUserPicture.layer.shadowOffset = CGSizeMake(0, 0);
+    self.menuUserPicture.layer.shadowOpacity = 1.0;
+    self.menuUserPicture.layer.shadowRadius = 7.0;
+    self.menuUserPicture.clipsToBounds = NO;
+    
     self.menuUsername.text = @"Current user";
+    self.menuUsername.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
     self.menuTags.text = @"Tag, Tag, Tag";
+}
+
+- (void)setupBarButtonItems
+{
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 45.0f, 34.0f)];
+    [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"three_lines.png"] forState:UIControlEventTouchDown];
+    leftButton.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.0f];
+    [leftButton addTarget:self action:@selector(showMenuAction:) forControlEvents:UIControlEventTouchDown];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+}
+
+- (void)resetInterface
+{
+    if (menuShown) {
+        [self toggleMenu];
+    }
 }
 
 #pragma mark UITableViewDataSource
@@ -132,7 +186,7 @@ BOOL menuShown = NO;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView.tag == 2) {
-        return @"Header title";
+        return @"Section title";
     }
     return nil;
 }
@@ -152,6 +206,60 @@ BOOL menuShown = NO;
         return [self menuTableView:tableView cellForRowAtIndexPath:indexPath];
     }
     return [self sphereUserTableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 2) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 240.0f, 40.0f)];
+        headerView.backgroundColor = [UIColor clearColor];
+        
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 200.0f, 40.0f)];
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+        headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+        
+        [headerView addSubview:headerLabel];
+        return headerView;
+    }
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 2) {
+        return 40.0f;
+    }
+    return 0.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.selectedRow isEqual:indexPath]) {
+        self.selectedRow = nil;
+    } else {
+        self.selectedRow = indexPath;
+    }
+    
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.tag == 1) {
+        if(self.selectedRow && [self.selectedRow isEqual:indexPath]) {
+            return 300;
+        }
+        return 60;
+    }
+    return 44;
 }
 
 #pragma mark UITableView handling methods
@@ -187,6 +295,10 @@ BOOL menuShown = NO;
     //Scale and crop the picture.
     cell.userPicture.image = [[concreteUser objectForKey:@"picture"] scaleAndCropToFit:60.0f usingMode:NYXCropModeCenter];
     
+    //For expanding.
+    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    cell.clipsToBounds = YES;
+    
     return cell;
 }
 
@@ -199,10 +311,56 @@ BOOL menuShown = NO;
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    cell.textLabel.textColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
-    
+        
     return cell;
+}
+
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource
+{
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	_reloading = YES;	
+}
+
+- (void)doneLoadingTableViewData
+{
+	//  model should call this when its done loading
+	_reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.sphereUserTableView];
+}
+
+
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];	
+}
+
+
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.5];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+	return _reloading; // should return if data source model is reloading	
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{
+	return [NSDate date]; // should return date data source was last changed	
 }
 
 #pragma mark UIMovement methods
@@ -223,6 +381,8 @@ BOOL menuShown = NO;
 {
     self.navigationController.navigationBar.frame = [self moveFrame:self.navigationController.navigationBar.frame];
     self.sphereUserTableView.frame = [self moveFrame:self.sphereUserTableView.frame];
+    
+    menuShown = !menuShown;
 }
 
 @end
