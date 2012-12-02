@@ -280,6 +280,8 @@ dispatch_queue_t fetchQ = NULL;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedRow = nil;
+    
     [tableView beginUpdates];
     [tableView endUpdates];
 }
@@ -356,15 +358,18 @@ dispatch_queue_t fetchQ = NULL;
 
 - (void)reloadTableViewDataSource
 {
-	[self.sphereUserTableView reloadData];
+    sleep(1);
 	_reloading = YES;	
 }
 
 - (void)doneLoadingTableViewData
 {
-	//  model should call this when its done loading
-	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.sphereUserTableView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.selectedRow = nil;
+        [self.sphereUserTableView reloadData];
+        _reloading = NO;
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.sphereUserTableView];
+    });
 }
 
 
@@ -385,8 +390,10 @@ dispatch_queue_t fetchQ = NULL;
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.5];
+    dispatch_async(fetchQ, ^{
+        [self reloadTableViewDataSource];
+        [self doneLoadingTableViewData];
+    });
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
