@@ -54,8 +54,6 @@ dispatch_queue_t fetchQ = NULL;
     [self toggleMenu];
 
     [UIView commitAnimations];
-    
-    NSLog(@"%@", [self.navigationController.navigationBar subviews]);
 }
 
 - (void)showSettingsAction:(id)sender
@@ -356,25 +354,26 @@ dispatch_queue_t fetchQ = NULL;
                 
         if ([self.selectedRow isEqual:indexPath]) {
             self.selectedRow = nil;
-            UIView *teethBottom = [[cell.expandView subviews] lastObject];
-            
-            [UIView animateWithDuration:0.28
-                                  delay: 0.0
-                                options: UIViewAnimationCurveLinear
-                             animations:^{
-                                 teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
-                             }
-                             completion:^(BOOL finished){
-                                 // Wait one second and then fade in the view
-                                 [UIView animateWithDuration:0.0
-                                                       delay: 1.0
-                                                     options:UIViewAnimationCurveEaseOut
-                                                  animations:^{
-                                                      [teethBottom removeFromSuperview];
-                                                  }
-                                                  completion:nil];
-                             }];
-            [UIView commitAnimations];
+            if ([[cell.expandView subviews] count] == 5) {
+                UIView *teethBottom = [[cell.expandView subviews] lastObject];
+                
+                [UIView animateWithDuration:0.285
+                                      delay: 0.0
+                                    options: UIViewAnimationCurveLinear
+                                 animations:^{
+                                     teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
+                                 }
+                                 completion:^(BOOL finished){
+                                     [UIView animateWithDuration:0.0
+                                                           delay: 0.0
+                                                         options:UIViewAnimationCurveEaseOut
+                                                      animations:^{
+                                                          [teethBottom removeFromSuperview];
+                                                      }
+                                                      completion:nil];
+                                 }];
+                [UIView commitAnimations];
+            }
         } else {
             self.selectedRow = indexPath;
             
@@ -400,25 +399,26 @@ dispatch_queue_t fetchQ = NULL;
     if (tableView.tag == 1) {
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
         
-        UIView *teethBottom = [[cell.expandView subviews] lastObject];
-        
-        [UIView animateWithDuration:0.5
-                              delay: 0.0
-                            options: UIViewAnimationCurveEaseIn
-                         animations:^{
-                             teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
-                         }
-                         completion:^(BOOL finished){
-                             // Wait one second and then fade in the view
-                             [UIView animateWithDuration:0.0
-                                                   delay: 1.0
-                                                 options:UIViewAnimationCurveEaseOut
-                                              animations:^{
-                                                  [teethBottom removeFromSuperview];
-                                              }
-                                              completion:nil];
-                         }];
-        [UIView commitAnimations];
+        if ([[cell.expandView subviews] count] == 5) {
+            UIView *teethBottom = [[cell.expandView subviews] lastObject];
+            
+            [UIView animateWithDuration:0.285
+                                  delay: 0.0
+                                options: UIViewAnimationCurveLinear
+                             animations:^{
+                                 teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
+                             }
+                             completion:^(BOOL finished){
+                                 [UIView animateWithDuration:0.0
+                                                       delay: 0.0
+                                                     options:UIViewAnimationCurveEaseOut
+                                                  animations:^{
+                                                      [teethBottom removeFromSuperview];
+                                                  }
+                                                  completion:nil];
+                             }];
+            [UIView commitAnimations];
+        }
         
         self.selectedRow = nil;
         
@@ -510,6 +510,12 @@ dispatch_queue_t fetchQ = NULL;
     self.sphereUserTableView.frame = [self moveFrame:self.sphereUserTableView.frame];
     
     menuShown = !menuShown;
+    
+    if (menuShown) {
+        [self.sphereUserTableView setUserInteractionEnabled:NO];
+    }else{
+        [self.sphereUserTableView setUserInteractionEnabled:YES];
+    }
 }
 
 @end
