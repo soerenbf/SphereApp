@@ -54,11 +54,13 @@ dispatch_queue_t fetchQ = NULL;
     [self toggleMenu];
 
     [UIView commitAnimations];
+    
+    NSLog(@"%@", [self.navigationController.navigationBar subviews]);
 }
 
 - (void)showSettingsAction:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"settingsSegue" sender:self];
 }
 
 
@@ -147,6 +149,9 @@ dispatch_queue_t fetchQ = NULL;
     [self.navigationItem setHidesBackButton:YES];
     self.navigationItem.titleView = [UIView customTitle:@"Sphere" withColor:[[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE] inFrame:self.navigationItem.titleView.frame];
     [self setupBarButtonItems];
+    
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    [navBar setBackgroundImage:[UIImage imageNamed:@"navigation_bar.png"] forBarMetrics:UIBarMetricsDefault];
     
     self.sphereUserTableView.backgroundColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
     
@@ -239,63 +244,6 @@ dispatch_queue_t fetchQ = NULL;
     return [self sphereUserTableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-#pragma mark UITableViewDelegate
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView.tag == 2) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 240.0f, 40.0f)];
-        headerView.backgroundColor = [UIColor clearColor];
-        
-        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 200.0f, 40.0f)];
-        headerLabel.backgroundColor = [UIColor clearColor];
-        headerLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
-        headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-        headerLabel.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
-        
-        [headerView addSubview:headerLabel];
-        return headerView;
-    }
-    
-    return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (tableView.tag == 2) {
-        return 40.0f;
-    }
-    return 0.0f;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.selectedRow isEqual:indexPath]) {
-        self.selectedRow = nil;
-    } else {
-        self.selectedRow = indexPath;
-    }
-    
-    [tableView beginUpdates];
-    [tableView endUpdates];
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedRow = nil;
-    
-    [tableView beginUpdates];
-    [tableView endUpdates];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView.tag == 1) {
-        if(self.selectedRow && [self.selectedRow isEqual:indexPath]) {
-            return 300;
-        }
-        return 60;
-    }
-    return 44;
-}
-
 #pragma mark UITableView handling methods
 
 - (UITableViewCell *)sphereUserTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -334,6 +282,10 @@ dispatch_queue_t fetchQ = NULL;
     cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     cell.clipsToBounds = YES;
     
+    cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
+    
+    [cell.expandView addSubview:[self expandedInformationViewForPerson:concreteUser]];
+    
     return cell;
 }
 
@@ -350,8 +302,140 @@ dispatch_queue_t fetchQ = NULL;
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
     cell.textLabel.text = [[[menuSections objectAtIndex:indexPath.section] objectForKey:@"listItems"] objectAtIndex:indexPath.row];
-        
+    
     return cell;
+}
+
+- (UIView *)expandedInformationViewForPerson:(NSDictionary *)person
+{
+    UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 240.0f)];
+    UILabel *schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 15.0f, 320.0f, 20.0f)];
+    schoolLabel.text = @"Studying: IT at Aarhus University";
+    schoolLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    schoolLabel.backgroundColor = [UIColor clearColor];
+    schoolLabel.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    
+    [infoView addSubview:schoolLabel];
+    
+    return infoView;
+}
+
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 2) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 240.0f, 40.0f)];
+        headerView.backgroundColor = [UIColor clearColor];
+        
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 200.0f, 40.0f)];
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+        headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+        headerLabel.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
+        
+        [headerView addSubview:headerLabel];
+        return headerView;
+    }
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView.tag == 2) {
+        return 40.0f;
+    }
+    return 0.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == 1) {
+        SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+                
+        if ([self.selectedRow isEqual:indexPath]) {
+            self.selectedRow = nil;
+            UIView *teethBottom = [[cell.expandView subviews] lastObject];
+            
+            [UIView animateWithDuration:0.28
+                                  delay: 0.0
+                                options: UIViewAnimationCurveLinear
+                             animations:^{
+                                 teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
+                             }
+                             completion:^(BOOL finished){
+                                 // Wait one second and then fade in the view
+                                 [UIView animateWithDuration:0.0
+                                                       delay: 1.0
+                                                     options:UIViewAnimationCurveEaseOut
+                                                  animations:^{
+                                                      [teethBottom removeFromSuperview];
+                                                  }
+                                                  completion:nil];
+                             }];
+            [UIView commitAnimations];
+        } else {
+            self.selectedRow = indexPath;
+            
+            UIView *teethBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 18.0f)];
+            teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
+            [cell.expandView addSubview:teethBottom];
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.3];
+            
+            teethBottom.frame = CGRectMake(0.0f, 282.0f, 320.0f, 18.0f);
+            
+            [UIView commitAnimations];
+        }
+        
+        [tableView beginUpdates];
+        [tableView endUpdates];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == 1) {
+        SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        UIView *teethBottom = [[cell.expandView subviews] lastObject];
+        
+        [UIView animateWithDuration:0.5
+                              delay: 0.0
+                            options: UIViewAnimationCurveEaseIn
+                         animations:^{
+                             teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
+                         }
+                         completion:^(BOOL finished){
+                             // Wait one second and then fade in the view
+                             [UIView animateWithDuration:0.0
+                                                   delay: 1.0
+                                                 options:UIViewAnimationCurveEaseOut
+                                              animations:^{
+                                                  [teethBottom removeFromSuperview];
+                                              }
+                                              completion:nil];
+                         }];
+        [UIView commitAnimations];
+        
+        self.selectedRow = nil;
+        
+        [tableView beginUpdates];
+        [tableView endUpdates];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == 1) {
+        if(self.selectedRow && [self.selectedRow isEqual:indexPath]) {
+            return 300;
+        }
+        return 60;
+    }
+    return 44;
 }
 
 #pragma mark Data Source Loading / Reloading Methods

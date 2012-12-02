@@ -48,7 +48,7 @@
             </objects>
             <point key="canvasLocation" x="591" y="186"/>
         </scene>
-        <!--Sphere List View Controller - Sphere-->
+        <!--Sphere List View Controller-->
         <scene sceneID="X5k-tH-15a">
             <objects>
                 <viewController id="CKI-zb-6Ki" customClass="SphereListViewController" sceneMemberID="viewController">
@@ -151,41 +151,53 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABZ-na-LE8">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-YP-bAv" userLabel="View to be expanded">
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABZ-na-LE8">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" type="user" id="nTf-kB-82a"/>
+                                                                <constraint firstAttribute="width" constant="60" id="qEt-IF-wmz"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-K4-Tjb" userLabel="Username">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="171" id="0m0-gj-2Nu"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-x5-jV8" userLabel="Tags">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" type="user" id="aRH-Lm-R4Q"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.56566491789999995" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" type="user" id="nTf-kB-82a"/>
-                                                        <constraint firstAttribute="width" constant="60" id="qEt-IF-wmz"/>
+                                                        <constraint firstItem="ABZ-na-LE8" firstAttribute="leading" secondItem="ORe-YP-bAv" secondAttribute="leading" type="default" id="188-aq-W60"/>
+                                                        <constraint firstItem="ABZ-na-LE8" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" type="default" id="3H6-fC-FJL"/>
+                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="31" id="RoK-B3-32Q"/>
+                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="leading" secondItem="ZLE-K4-Tjb" secondAttribute="leading" type="default" id="Wky-Lj-BoY"/>
+                                                        <constraint firstItem="ZLE-K4-Tjb" firstAttribute="leading" secondItem="ORe-YP-bAv" secondAttribute="leading" constant="73" id="X47-gC-gb0"/>
+                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="trailing" secondItem="ZLE-K4-Tjb" secondAttribute="trailing" type="default" id="YCv-b6-gSO"/>
+                                                        <constraint firstItem="ZLE-K4-Tjb" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="15" id="ptd-cK-gq2"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-K4-Tjb" userLabel="Username">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="171" id="0m0-gj-2Nu"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-x5-jV8" userLabel="Tags">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" type="user" id="aRH-Lm-R4Q"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.56566491789999995" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="ZLE-K4-Tjb" firstAttribute="trailing" secondItem="mRF-x5-jV8" secondAttribute="trailing" type="default" id="9jD-At-Nea"/>
-                                            <constraint firstItem="ZLE-K4-Tjb" firstAttribute="leading" secondItem="mRF-x5-jV8" secondAttribute="leading" type="default" id="AMk-uA-9an"/>
-                                            <constraint firstItem="ZLE-K4-Tjb" firstAttribute="leading" secondItem="VOc-bu-0Fh" secondAttribute="leading" constant="73" id="ID6-GA-RaU"/>
-                                            <constraint firstItem="ZLE-K4-Tjb" firstAttribute="top" secondItem="VOc-bu-0Fh" secondAttribute="top" constant="15" id="SsX-sU-w1M"/>
-                                            <constraint firstItem="ABZ-na-LE8" firstAttribute="top" secondItem="VOc-bu-0Fh" secondAttribute="top" type="user" id="bov-eT-Vo5"/>
-                                            <constraint firstItem="ABZ-na-LE8" firstAttribute="leading" secondItem="VOc-bu-0Fh" secondAttribute="leading" type="default" id="p9e-YR-1pn"/>
-                                            <constraint firstItem="mRF-x5-jV8" firstAttribute="top" secondItem="VOc-bu-0Fh" secondAttribute="top" constant="31" type="user" id="yLz-aQ-fGN"/>
+                                            <constraint firstItem="ORe-YP-bAv" firstAttribute="leading" secondItem="VOc-bu-0Fh" secondAttribute="leading" type="default" id="KWm-4N-6f2"/>
+                                            <constraint firstAttribute="bottom" secondItem="ORe-YP-bAv" secondAttribute="bottom" constant="-423" id="PY6-Pp-dIc"/>
+                                            <constraint firstItem="ORe-YP-bAv" firstAttribute="top" secondItem="VOc-bu-0Fh" secondAttribute="top" type="user" id="UzZ-oz-1dO"/>
+                                            <constraint firstItem="ORe-YP-bAv" firstAttribute="trailing" secondItem="VOc-bu-0Fh" secondAttribute="trailing" type="default" id="sVR-BE-uEF"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="expandView" destination="ORe-YP-bAv" id="rgG-0L-5np"/>
                                             <outlet property="nameLabel" destination="ZLE-K4-Tjb" id="8a6-ma-Ka2"/>
                                             <outlet property="tagsLabel" destination="mRF-x5-jV8" id="RxH-na-J9M"/>
                                             <outlet property="userPicture" destination="ABZ-na-LE8" id="zWz-DB-dk4"/>
@@ -205,7 +217,7 @@
                             <constraint firstItem="J1M-oY-d89" firstAttribute="bottom" secondItem="bv7-pn-WyZ" secondAttribute="bottom" type="default" id="ue3-bR-eY4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sphere" id="kVN-xx-4vu"/>
+                    <navigationItem key="navigationItem" id="kVN-xx-4vu"/>
                     <connections>
                         <outlet property="menuNavigationBar" destination="iC9-pO-JBE" id="boe-nk-Edn"/>
                         <outlet property="menuNavigationItem" destination="Wn4-gy-t03" id="sJc-aD-lFo"/>
@@ -214,11 +226,27 @@
                         <outlet property="menuUserPicture" destination="VZW-bG-wde" id="r7Z-ZK-wMs"/>
                         <outlet property="menuUsername" destination="ZIw-U6-qPy" id="eJR-Y5-FOG"/>
                         <outlet property="sphereUserTableView" destination="8c8-d1-xnX" id="NP7-Se-96g"/>
+                        <segue destination="qBu-pl-9Ku" kind="push" identifier="settingsSegue" id="CMx-tB-tKS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jti-o4-W6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1077" y="186"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="alD-XG-dWj">
+            <objects>
+                <viewController id="qBu-pl-9Ku" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NC4-db-A17">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1iu-YW-tVu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ic4-Ds-Inm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1556" y="186"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uX0-Yi-JlI">
@@ -248,6 +276,9 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+        </class>
         <class className="SphereListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereListViewController.h"/>
             <relationships>
@@ -264,6 +295,7 @@
         <class className="SphereUserCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereUserCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="expandView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userPicture" candidateClass="UIImageView"/>
@@ -271,9 +303,6 @@
         </class>
         <class className="SphereViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonAction:"/>
-            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

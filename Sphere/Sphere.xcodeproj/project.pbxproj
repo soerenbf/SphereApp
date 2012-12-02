@@ -84,6 +84,11 @@
 		2687040F166BCB7400B7525E /* cogwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687040B166BCB7400B7525E /* cogwheel@2x.png */; };
 		26870410166BCB7400B7525E /* three_lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687040C166BCB7400B7525E /* three_lines.png */; };
 		26870411166BCB7400B7525E /* three_lines@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687040D166BCB7400B7525E /* three_lines@2x.png */; };
+		26870414166BEC7700B7525E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26870413166BEC7700B7525E /* SettingsViewController.m */; };
+		2687041B166BF46600B7525E /* shark_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870419166BF46600B7525E /* shark_bottom.png */; };
+		2687041C166BF46600B7525E /* shark_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041A166BF46600B7525E /* shark_bottom@2x.png */; };
+		2687041F166BF8C300B7525E /* shark_teeth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041D166BF8C300B7525E /* shark_teeth.png */; };
+		26870420166BF8C300B7525E /* shark_teeth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041E166BF8C300B7525E /* shark_teeth@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +203,12 @@
 		2687040B166BCB7400B7525E /* cogwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cogwheel@2x.png"; sourceTree = "<group>"; };
 		2687040C166BCB7400B7525E /* three_lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = three_lines.png; sourceTree = "<group>"; };
 		2687040D166BCB7400B7525E /* three_lines@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "three_lines@2x.png"; sourceTree = "<group>"; };
+		26870412166BEC7700B7525E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		26870413166BEC7700B7525E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		26870419166BF46600B7525E /* shark_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark_bottom.png; sourceTree = "<group>"; };
+		2687041A166BF46600B7525E /* shark_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark_bottom@2x.png"; sourceTree = "<group>"; };
+		2687041D166BF8C300B7525E /* shark_teeth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark_teeth.png; sourceTree = "<group>"; };
+		2687041E166BF8C300B7525E /* shark_teeth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark_teeth@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +327,10 @@
 		2634296C166936AD00280B39 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2687041D166BF8C300B7525E /* shark_teeth.png */,
+				2687041E166BF8C300B7525E /* shark_teeth@2x.png */,
+				26870419166BF46600B7525E /* shark_bottom.png */,
+				2687041A166BF46600B7525E /* shark_bottom@2x.png */,
 				263429401669303500280B39 /* Default.png */,
 				263429421669303500280B39 /* Default@2x.png */,
 				263429441669303500280B39 /* Default-568h@2x.png */,
@@ -536,6 +551,8 @@
 		26870408166BBC1500B7525E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				26870412166BEC7700B7525E /* SettingsViewController.h */,
+				26870413166BEC7700B7525E /* SettingsViewController.m */,
 				26342984166947B600280B39 /* SphereListViewController.h */,
 				26342985166947B600280B39 /* SphereListViewController.m */,
 				263429491669303500280B39 /* SphereViewController.h */,
@@ -666,6 +683,10 @@
 				2687040F166BCB7400B7525E /* cogwheel@2x.png in Resources */,
 				26870410166BCB7400B7525E /* three_lines.png in Resources */,
 				26870411166BCB7400B7525E /* three_lines@2x.png in Resources */,
+				2687041B166BF46600B7525E /* shark_bottom.png in Resources */,
+				2687041C166BF46600B7525E /* shark_bottom@2x.png in Resources */,
+				2687041F166BF8C300B7525E /* shark_teeth.png in Resources */,
+				26870420166BF8C300B7525E /* shark_teeth@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +742,7 @@
 				268703CB166AD5D200B7525E /* ConstantsHandler.m in Sources */,
 				268703CE166AD90C00B7525E /* UIView+CustomTitleView.m in Sources */,
 				268703E4166BA10000B7525E /* EGORefreshTableHeaderView.m in Sources */,
+				26870414166BEC7700B7525E /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

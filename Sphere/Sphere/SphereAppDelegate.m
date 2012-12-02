@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Storm of Brains. All rights reserved.
 //
 
-#define CYANID_BLUE = [UIColor colorWithRed:27.0f/255.0f Green:177/255.0f Blue:232.0f/255.0f Alpha:1.0f];
-
 #import "SphereAppDelegate.h"
 
 @implementation SphereAppDelegate
@@ -48,16 +46,6 @@
 
 - (void)customizeAppearance
 {
-    NSArray *controllers = self.window.rootViewController.childViewControllers;
-    
-    for (UIViewController *controller in controllers) {
-        UINavigationBar *navBar = controller.navigationController.navigationBar;
-        
-        //Add the imageview to the navbar
-        [navBar insertSubview:[UIImageView gradientTextureWithFrame:navBar.bounds withImage:[UIImage imageNamed:@"navigation_bar.png"]] atIndex:1];
-    }
-    
-    
 }
 
 @end

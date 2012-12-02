@@ -10,6 +10,8 @@
 
 @interface SphereUserCell : UITableViewCell
 
+@property (nonatomic, strong) IBOutlet UIView *expandView;
+
 @property (nonatomic, strong) IBOutlet UIImageView *userPicture;
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *tagsLabel;
