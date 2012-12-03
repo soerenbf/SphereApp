@@ -140,9 +140,9 @@
                                     <constraint firstItem="YKN-Sg-AlY" firstAttribute="top" secondItem="iC9-pO-JBE" secondAttribute="bottom" type="default" id="xsI-nb-T97"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8c8-d1-xnX" userLabel="Main table view">
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8c8-d1-xnX" userLabel="Main table view">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.85033645072992703" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.89656409438775508" green="0.89656409438775508" blue="0.89656409438775508" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sphereUserCell" id="VOc-bu-0Fh" customClass="SphereUserCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>

@@ -117,7 +117,7 @@ dispatch_queue_t fetchQ = NULL;
             [UIImage imageNamed:@"user_placeholder.png"], @"picture",
             nil];
     
-    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, user2, user3, nil];
+    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, nil];
     
     //***********************************MENU*************************************.
     
@@ -385,13 +385,11 @@ dispatch_queue_t fetchQ = NULL;
             teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
             [cell.expandView addSubview:teethBottom];
             
-            
-                        
             [UIView animateWithDuration:0.285
                                   delay: 0.0
                                 options: UIViewAnimationCurveLinear
                              animations:^{
-                                 teethBottom.frame = CGRectMake(0.0f, 282.0f, 320.0f, 18.0f);
+                                 teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
                              }
                              completion:^(BOOL finished){
                                  [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];

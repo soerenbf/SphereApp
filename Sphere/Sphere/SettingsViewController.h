@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConstantsHandler.h"
+#import "UIView+CustomTitleView.h"
 
 @interface SettingsViewController : UIViewController
 

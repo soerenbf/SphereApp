@@ -24,6 +24,7 @@
     //Colors.
     self.COLOR_CYANID_BLUE = [UIColor colorWithRed:27.0f/255.0f green:177.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     self.COLOR_WHITE = [UIColor colorWithRed:233.0f/255.0f green:234.0f/255.0f blue:234.0f/255.0f alpha:1.0f];
+    self.COLOR_LINEN_PATTERN = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_bg.png"]];
     
     //Fonts.
     self.FONT_NAVBAR_TITLE = [self originType:fontTypeRegular FontSize:18.0f];

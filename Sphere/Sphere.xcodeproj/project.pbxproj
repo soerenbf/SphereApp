@@ -89,6 +89,8 @@
 		2687041C166BF46600B7525E /* shark_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041A166BF46600B7525E /* shark_bottom@2x.png */; };
 		2687041F166BF8C300B7525E /* shark_teeth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041D166BF8C300B7525E /* shark_teeth.png */; };
 		26870420166BF8C300B7525E /* shark_teeth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687041E166BF8C300B7525E /* shark_teeth@2x.png */; };
+		26870423166C318200B7525E /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870421166C318200B7525E /* back_button.png */; };
+		26870424166C318200B7525E /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870422166C318200B7525E /* back_button@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +211,8 @@
 		2687041A166BF46600B7525E /* shark_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark_bottom@2x.png"; sourceTree = "<group>"; };
 		2687041D166BF8C300B7525E /* shark_teeth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark_teeth.png; sourceTree = "<group>"; };
 		2687041E166BF8C300B7525E /* shark_teeth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark_teeth@2x.png"; sourceTree = "<group>"; };
+		26870421166C318200B7525E /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
+		26870422166C318200B7525E /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +353,8 @@
 		26342975166936EE00280B39 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				26870421166C318200B7525E /* back_button.png */,
+				26870422166C318200B7525E /* back_button@2x.png */,
 				2687040A166BCB7400B7525E /* cogwheel.png */,
 				2687040B166BCB7400B7525E /* cogwheel@2x.png */,
 				2687040C166BCB7400B7525E /* three_lines.png */,
@@ -687,6 +693,8 @@
 				2687041C166BF46600B7525E /* shark_bottom@2x.png in Resources */,
 				2687041F166BF8C300B7525E /* shark_teeth.png in Resources */,
 				26870420166BF8C300B7525E /* shark_teeth@2x.png in Resources */,
+				26870423166C318200B7525E /* back_button.png in Resources */,
+				26870424166C318200B7525E /* back_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

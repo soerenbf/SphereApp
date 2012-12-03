@@ -25,6 +25,7 @@ typedef enum fontType{
 //Colors.
 @property (strong, nonatomic) UIColor *COLOR_CYANID_BLUE;
 @property (strong, nonatomic) UIColor *COLOR_WHITE;
+@property (strong, nonatomic) UIColor *COLOR_LINEN_PATTERN;
 
 //Fonts.
 @property (strong, nonatomic) UIFont *FONT_NAVBAR_TITLE;
