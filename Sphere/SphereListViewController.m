@@ -25,9 +25,10 @@ NSDictionary *kasperBF;
 NSDictionary *kasperBJ;
 NSDictionary *soerenBF;
 NSDictionary *boP;
-NSDictionary *user;
-NSDictionary *user2;
-NSDictionary *user3;
+NSDictionary *courtney;
+NSDictionary *stine;
+NSDictionary *pernille;
+NSDictionary *ganesh;
 
 NSArray *users;
 
@@ -87,37 +88,49 @@ dispatch_queue_t fetchQ = NULL;
     kasperBF = [[NSDictionary alloc] initWithObjectsAndKeys:@"Kasper Bruus Frank", @"name",
                 [[NSArray alloc] initWithObjects:@"Snowboarding", @"IT", @"Design", nil], @"tags",
                 [UIImage imageNamed:@"kbf.jpg"], @"picture",
+                [NSNumber numberWithInt:1], @"happiness",
                 nil];
     
     kasperBJ = [[NSDictionary alloc] initWithObjectsAndKeys:@"Kasper Buhl Jakobsen", @"name",
                 [[NSArray alloc] initWithObjects:@"Tricking", @"IT", @"Android", nil], @"tags",
                 [UIImage imageNamed:@"kbj.jpg"], @"picture",
+                [NSNumber numberWithInt:0], @"happiness",
                 nil];
     
     soerenBF = [[NSDictionary alloc] initWithObjectsAndKeys:@"Søren Bruus Frank", @"name",
                 [[NSArray alloc] initWithObjects:@"Snowboarding", @"IT", @"iOS development", nil], @"tags",
                 [UIImage imageNamed:@"sbf.jpg"], @"picture",
+                [NSNumber numberWithInt:0], @"happiness",
                 nil];
     
     boP = [[NSDictionary alloc] initWithObjectsAndKeys:@"Bo Penstoft", @"name",
            [[NSArray alloc] initWithObjects:@"Gaming", @"IT", @"Exercise", nil], @"tags",
            [UIImage imageNamed:@"bo.jpg"], @"picture",
+           [NSNumber numberWithInt:1], @"happiness",
            nil];
     
-    user = [[NSDictionary alloc] initWithObjectsAndKeys:@"User", @"name",
-            [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
-            [UIImage imageNamed:@"user_placeholder.png"], @"picture",
+    courtney = [[NSDictionary alloc] initWithObjectsAndKeys:@"Courtney Davis", @"name",
+               [[NSArray alloc] initWithObjects:@"Movies", @"Journalism", @"Exercise", nil], @"tags",
+               [UIImage imageNamed:@"courtney.jpg"], @"picture",
+               [NSNumber numberWithInt:1], @"happiness",
+               nil];
+    stine = [[NSDictionary alloc] initWithObjectsAndKeys:@"Stine Frank Kristensen", @"name",
+            [[NSArray alloc] initWithObjects:@"Economics", @"Horseriding", @"Cleaning", nil], @"tags",
+            [UIImage imageNamed:@"stine.jpg"], @"picture",
+            [NSNumber numberWithInt:0], @"happiness",
             nil];
-    user2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"User", @"name",
-            [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
-            [UIImage imageNamed:@"user_placeholder.png"], @"picture",
-            nil];
-    user3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"User", @"name",
-            [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
-            [UIImage imageNamed:@"user_placeholder.png"], @"picture",
-            nil];
+    pernille = [[NSDictionary alloc] initWithObjectsAndKeys:@"Pernille Bohl Clausen", @"name",
+               [[NSArray alloc] initWithObjects:@"Journalism", @"Party-planning", @"Traveling", nil], @"tags",
+               [UIImage imageNamed:@"pernille.jpg"], @"picture",
+               [NSNumber numberWithInt:1], @"happiness",
+               nil];
+    ganesh = [[NSDictionary alloc] initWithObjectsAndKeys:@"Ganesh (Knallert starter)", @"name",
+             [[NSArray alloc] initWithObjects:@"Fitness", @"Music", @"Business", nil], @"tags",
+             [UIImage imageNamed:@"ganesh.jpg"], @"picture",
+             [NSNumber numberWithInt:0], @"happiness",
+             nil];
     
-    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, nil];
+    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, pernille, soerenBF, stine, boP, courtney, ganesh, nil];
     
     //***********************************MENU*************************************.
     
@@ -291,6 +304,13 @@ dispatch_queue_t fetchQ = NULL;
     cell.clipsToBounds = YES;
     
     cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
+    cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
+    
+    if ([[concreteUser objectForKey:@"happiness"] integerValue] == 1) {
+        cell.smiley.image = [UIImage imageNamed:@"smiley.png"];
+    }else{
+        cell.smiley.image = nil;
+    }
     
     [cell.expandView addSubview:[self expandedInformationViewForPerson:concreteUser]];
     
@@ -316,14 +336,44 @@ dispatch_queue_t fetchQ = NULL;
 
 - (UIView *)expandedInformationViewForPerson:(NSDictionary *)person
 {
-    UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 240.0f)];
-    UILabel *schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 15.0f, 320.0f, 20.0f)];
-    schoolLabel.text = @"Studying: IT at Aarhus University";
-    schoolLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
-    schoolLabel.backgroundColor = [UIColor clearColor];
-    schoolLabel.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.0f, 320.0f, 240.0f)];
     
-    [infoView addSubview:schoolLabel];
+    UILabel *age = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 290.0f, 20.0f)];
+    age.text = @"Age: 23";
+    age.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    age.backgroundColor = [UIColor clearColor];
+    age.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    
+    UILabel *school = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 290.0f, 20.0f)];
+    school.text = @"Studying at: Aarhus University";
+    school.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    school.backgroundColor = [UIColor clearColor];
+    school.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    
+    UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 290.0f, 20.0f)];
+    work.text = @"Working at: Aarhus University";
+    work.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    work.backgroundColor = [UIColor clearColor];
+    work.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    
+    UITextView *quote = [[UITextView alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 290.0f, 80.0f)];
+    quote.text = @"\"It is better to conquer yourself than to win a thousand battles. Then the victory is yours. it cannot be taken from you, not by anges or by demons, heaven or hell.\" - Buddha";
+    quote.textColor = [[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE];
+    quote.backgroundColor = [UIColor clearColor];
+    quote.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    
+    NSArray *informationArray = [[NSArray alloc] initWithObjects:age, school, work, quote, nil];
+    
+    UIView *prevView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
+    
+    for (UIView *view in informationArray) {
+        view.frame = CGRectMake(view.frame.origin.x,
+                                view.frame.origin.y + prevView.frame.size.height + prevView.frame.origin.y + 10.0f,
+                                view.frame.size.width,
+                                view.frame.size.height);
+        [infoView addSubview:view];
+        prevView = view;
+    }
     
     return infoView;
 }
@@ -363,6 +413,7 @@ dispatch_queue_t fetchQ = NULL;
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
                 
         if ([self.selectedRow isEqual:indexPath]) {
+            cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
             self.selectedRow = nil;
             if ([[cell.expandView subviews] count] == 5) {
                 UIView *teethBottom = [[cell.expandView subviews] lastObject];
@@ -380,6 +431,7 @@ dispatch_queue_t fetchQ = NULL;
             }
         } else {
             self.selectedRow = indexPath;
+            cell.accessory.image = [UIImage imageNamed:@"cell_accessory_up.png"];
             
             UIView *teethBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 18.0f)];
             teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
@@ -406,6 +458,7 @@ dispatch_queue_t fetchQ = NULL;
 {
     if (tableView.tag == 1) {
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
         
         if ([[cell.expandView subviews] count] == 5) {
             UIView *teethBottom = [[cell.expandView subviews] lastObject];

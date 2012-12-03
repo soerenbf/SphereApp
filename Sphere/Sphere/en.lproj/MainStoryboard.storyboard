@@ -153,10 +153,22 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORe-YP-bAv" userLabel="View to be expanded">
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABZ-na-LE8">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEN-4a-KiW" userLabel="Smiley">
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="09W-oT-Lak"/>
+                                                                <constraint firstAttribute="height" constant="25" id="SX2-dj-fp1"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-4a-n6f" userLabel="Accessory">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="19" id="3Rr-O4-w2H"/>
+                                                                <constraint firstAttribute="height" constant="15" id="fyY-ud-6Ci"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABZ-na-LE8" userLabel="User picture">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="mQ1-l4-FIA"/>
                                                                 <constraint firstAttribute="height" constant="60" type="user" id="nTf-kB-82a"/>
-                                                                <constraint firstAttribute="width" constant="60" id="qEt-IF-wmz"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-K4-Tjb" userLabel="Username">
@@ -180,11 +192,15 @@
                                                     <constraints>
                                                         <constraint firstItem="ABZ-na-LE8" firstAttribute="leading" secondItem="ORe-YP-bAv" secondAttribute="leading" type="default" id="188-aq-W60"/>
                                                         <constraint firstItem="ABZ-na-LE8" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" type="default" id="3H6-fC-FJL"/>
-                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="31" id="RoK-B3-32Q"/>
+                                                        <constraint firstItem="ZLE-K4-Tjb" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="14" id="500-zR-eKc"/>
+                                                        <constraint firstItem="YEN-4a-KiW" firstAttribute="centerY" secondItem="TgT-4a-n6f" secondAttribute="centerY" type="default" id="K5u-c6-eKu"/>
+                                                        <constraint firstItem="YEN-4a-KiW" firstAttribute="centerY" secondItem="ABZ-na-LE8" secondAttribute="centerY" type="default" id="VyO-8a-z5j"/>
                                                         <constraint firstItem="mRF-x5-jV8" firstAttribute="leading" secondItem="ZLE-K4-Tjb" secondAttribute="leading" type="default" id="Wky-Lj-BoY"/>
                                                         <constraint firstItem="ZLE-K4-Tjb" firstAttribute="leading" secondItem="ORe-YP-bAv" secondAttribute="leading" constant="73" id="X47-gC-gb0"/>
-                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="trailing" secondItem="ZLE-K4-Tjb" secondAttribute="trailing" type="default" id="YCv-b6-gSO"/>
-                                                        <constraint firstItem="ZLE-K4-Tjb" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="15" id="ptd-cK-gq2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YEN-4a-KiW" secondAttribute="trailing" constant="40" id="fhU-VA-BuJ"/>
+                                                        <constraint firstItem="ZLE-K4-Tjb" firstAttribute="trailing" secondItem="mRF-x5-jV8" secondAttribute="trailing" type="default" id="oqH-u0-tU9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="TgT-4a-n6f" secondAttribute="trailing" constant="15" id="qlf-kV-0ML"/>
+                                                        <constraint firstItem="mRF-x5-jV8" firstAttribute="top" secondItem="ORe-YP-bAv" secondAttribute="top" constant="31" id="tr3-En-o8Z"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -197,8 +213,10 @@
                                             <constraint firstItem="ORe-YP-bAv" firstAttribute="trailing" secondItem="VOc-bu-0Fh" secondAttribute="trailing" type="default" id="sVR-BE-uEF"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="accessory" destination="TgT-4a-n6f" id="lyE-gq-5oC"/>
                                             <outlet property="expandView" destination="ORe-YP-bAv" id="rgG-0L-5np"/>
                                             <outlet property="nameLabel" destination="ZLE-K4-Tjb" id="8a6-ma-Ka2"/>
+                                            <outlet property="smiley" destination="YEN-4a-KiW" id="HZ5-GU-3eB"/>
                                             <outlet property="tagsLabel" destination="mRF-x5-jV8" id="RxH-na-J9M"/>
                                             <outlet property="userPicture" destination="ABZ-na-LE8" id="zWz-DB-dk4"/>
                                         </connections>
@@ -295,8 +313,10 @@
         <class className="SphereUserCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereUserCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="accessory" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="expandView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="smiley" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userPicture" candidateClass="UIImageView"/>
             </relationships>
