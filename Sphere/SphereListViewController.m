@@ -309,7 +309,7 @@ dispatch_queue_t fetchQ = NULL;
     cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     cell.clipsToBounds = YES;
     
-    cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
+    //cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
     cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
     
     if ([[concreteUser objectForKey:@"happiness"] integerValue] == 1) {
@@ -367,6 +367,7 @@ dispatch_queue_t fetchQ = NULL;
     quote.textColor = [[ConstantsHandler sharedConstants] COLOR_CYANID_BLUE];
     quote.backgroundColor = [UIColor clearColor];
     quote.font = [UIFont fontWithName:@"Arial" size:14.0f];
+    quote.editable = NO;
     
     NSArray *informationArray = [[NSArray alloc] initWithObjects:age, school, work, quote, nil];
     
@@ -417,6 +418,7 @@ dispatch_queue_t fetchQ = NULL;
 {
     if (tableView.tag == 1) {
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
                 
         if ([self.selectedRow isEqual:indexPath]) {
             cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
@@ -432,12 +434,14 @@ dispatch_queue_t fetchQ = NULL;
                                  }
                                  completion:^(BOOL finished){
                                      [teethBottom removeFromSuperview];
+                                     cell.expandView.backgroundColor = [UIColor clearColor];
                                  }];
                 [UIView commitAnimations];
             }
         } else {
             self.selectedRow = indexPath;
             cell.accessory.image = [UIImage imageNamed:@"cell_accessory_up.png"];
+            cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
             
             UIView *teethBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 18.0f)];
             teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
@@ -477,6 +481,7 @@ dispatch_queue_t fetchQ = NULL;
                              }
                              completion:^(BOOL finished){
                                  [teethBottom removeFromSuperview];
+                                 cell.expandView.backgroundColor = [UIColor clearColor];
                              }];
             [UIView commitAnimations];
         }
