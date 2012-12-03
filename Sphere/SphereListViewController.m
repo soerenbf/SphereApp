@@ -368,6 +368,7 @@ dispatch_queue_t fetchQ = NULL;
     quote.backgroundColor = [UIColor clearColor];
     quote.font = [UIFont fontWithName:@"Arial" size:14.0f];
     quote.editable = NO;
+    quote.scrollEnabled = NO;
     
     NSArray *informationArray = [[NSArray alloc] initWithObjects:age, school, work, quote, nil];
     
@@ -454,7 +455,7 @@ dispatch_queue_t fetchQ = NULL;
                                  teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
                              }
                              completion:^(BOOL finished){
-                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
                              }];
             [UIView commitAnimations];
         }
