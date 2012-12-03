@@ -423,8 +423,11 @@ dispatch_queue_t fetchQ = NULL;
         if ([self.selectedRow isEqual:indexPath]) {
             cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
             self.selectedRow = nil;
-            if ([[cell.expandView subviews] count] == 7) {
+            
+            NSLog(@"%i", [[cell.expandView subviews] count]);
+            if ([[cell.expandView subviews] count] > 6) {
                 UIView *teethBottom = [[cell.expandView subviews] lastObject];
+                NSLog(@"%@", teethBottom);
                 
                 [UIView animateWithDuration:0.285
                                       delay: 0.0
@@ -433,8 +436,10 @@ dispatch_queue_t fetchQ = NULL;
                                      teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
                                  }
                                  completion:^(BOOL finished){
-                                     [teethBottom removeFromSuperview];
                                      cell.expandView.backgroundColor = [UIColor clearColor];
+                                     while ([[cell.expandView subviews] count] > 6) {
+                                         [[[cell.expandView subviews] lastObject] removeFromSuperview];
+                                     }
                                  }];
                 [UIView commitAnimations];
             }
@@ -470,7 +475,7 @@ dispatch_queue_t fetchQ = NULL;
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
         
-        if ([[cell.expandView subviews] count] == 7) {
+        if ([[cell.expandView subviews] count] > 6) {
             UIView *teethBottom = [[cell.expandView subviews] lastObject];
             
             [UIView animateWithDuration:0.285
@@ -480,8 +485,10 @@ dispatch_queue_t fetchQ = NULL;
                                  teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
                              }
                              completion:^(BOOL finished){
-                                 [teethBottom removeFromSuperview];
                                  cell.expandView.backgroundColor = [UIColor clearColor];
+                                 while ([[cell.expandView subviews] count] > 6) {
+                                     [[[cell.expandView subviews] lastObject] removeFromSuperview];
+                                 }
                              }];
             [UIView commitAnimations];
         }
