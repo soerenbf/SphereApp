@@ -419,12 +419,11 @@ dispatch_queue_t fetchQ = NULL;
 {
     if (tableView.tag == 1) {
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
-        
                 
         if ([self.selectedRow isEqual:indexPath]) {
             cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
             self.selectedRow = nil;
-            if ([[cell.expandView subviews] count] == 5) {
+            if ([[cell.expandView subviews] count] == 7) {
                 UIView *teethBottom = [[cell.expandView subviews] lastObject];
                 
                 [UIView animateWithDuration:0.285
@@ -448,9 +447,9 @@ dispatch_queue_t fetchQ = NULL;
             teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
             [cell.expandView addSubview:teethBottom];
             
-            [UIView animateWithDuration:0.285
+            [UIView animateWithDuration:0.30
                                   delay: 0.0
-                                options: UIViewAnimationCurveLinear
+                                options: UIViewAnimationCurveEaseIn
                              animations:^{
                                  teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
                              }
@@ -471,7 +470,7 @@ dispatch_queue_t fetchQ = NULL;
         SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
         
-        if ([[cell.expandView subviews] count] == 5) {
+        if ([[cell.expandView subviews] count] == 7) {
             UIView *teethBottom = [[cell.expandView subviews] lastObject];
             
             [UIView animateWithDuration:0.285

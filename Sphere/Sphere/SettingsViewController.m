@@ -39,6 +39,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.settingsTableView.dataSource = self;
+    self.settingsTableView.delegate = self;
+    
     [self setupMainLayout];
 }
 
@@ -74,6 +77,42 @@
 
 - (void)resetInterface
 {
+}
+
+#pragma mark UITableViewDataSource
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Section title";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"settingsCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
+    cell.textLabel.text = @"Title";
+    
+    return cell;
 }
 
 @end
