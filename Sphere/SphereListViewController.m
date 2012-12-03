@@ -454,7 +454,7 @@ dispatch_queue_t fetchQ = NULL;
                                  teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
                              }
                              completion:^(BOOL finished){
-                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                              }];
             [UIView commitAnimations];
         }
