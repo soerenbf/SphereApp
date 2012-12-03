@@ -29,6 +29,7 @@ NSDictionary *courtney;
 NSDictionary *stine;
 NSDictionary *pernille;
 NSDictionary *ganesh;
+NSDictionary *ida;
 
 NSArray *users;
 
@@ -129,8 +130,13 @@ dispatch_queue_t fetchQ = NULL;
              [UIImage imageNamed:@"ganesh.jpg"], @"picture",
              [NSNumber numberWithInt:0], @"happiness",
              nil];
+    ida = [[NSDictionary alloc] initWithObjectsAndKeys:@"Ida Hekman Nielsen", @"name",
+           [[NSArray alloc] initWithObjects:@"Photography", @"Media", @"Money", nil], @"tags",
+           [UIImage imageNamed:@"ida.jpg"], @"picture",
+           [NSNumber numberWithInt:1], @"happiness",
+           nil];
     
-    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, pernille, soerenBF, stine, boP, courtney, ganesh, nil];
+    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, pernille, soerenBF, stine, boP, courtney, ganesh, ida, nil];
     
     //***********************************MENU*************************************.
     
