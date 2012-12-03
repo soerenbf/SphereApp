@@ -424,10 +424,8 @@ dispatch_queue_t fetchQ = NULL;
             cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
             self.selectedRow = nil;
             
-            NSLog(@"%i", [[cell.expandView subviews] count]);
             if ([[cell.expandView subviews] count] > 6) {
                 UIView *teethBottom = [[cell.expandView subviews] lastObject];
-                NSLog(@"%@", teethBottom);
                 
                 [UIView animateWithDuration:0.285
                                       delay: 0.0
