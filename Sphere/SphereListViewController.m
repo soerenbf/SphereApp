@@ -26,6 +26,8 @@ NSDictionary *kasperBJ;
 NSDictionary *soerenBF;
 NSDictionary *boP;
 NSDictionary *user;
+NSDictionary *user2;
+NSDictionary *user3;
 
 NSArray *users;
 
@@ -106,8 +108,16 @@ dispatch_queue_t fetchQ = NULL;
             [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
             [UIImage imageNamed:@"user_placeholder.png"], @"picture",
             nil];
+    user2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"User", @"name",
+            [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
+            [UIImage imageNamed:@"user_placeholder.png"], @"picture",
+            nil];
+    user3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"User", @"name",
+            [[NSArray alloc] initWithObjects:@"Tag 1", @"Tag 2", @"Tag 3", nil], @"tags",
+            [UIImage imageNamed:@"user_placeholder.png"], @"picture",
+            nil];
     
-    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, nil];
+    users = [[NSArray alloc] initWithObjects:kasperBF, kasperBJ, soerenBF, boP, user, user2, user3, nil];
     
     //***********************************MENU*************************************.
     
@@ -364,13 +374,7 @@ dispatch_queue_t fetchQ = NULL;
                                      teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
                                  }
                                  completion:^(BOOL finished){
-                                     [UIView animateWithDuration:0.0
-                                                           delay: 0.0
-                                                         options:UIViewAnimationCurveEaseOut
-                                                      animations:^{
-                                                          [teethBottom removeFromSuperview];
-                                                      }
-                                                      completion:nil];
+                                     [teethBottom removeFromSuperview];
                                  }];
                 [UIView commitAnimations];
             }
@@ -381,11 +385,17 @@ dispatch_queue_t fetchQ = NULL;
             teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
             [cell.expandView addSubview:teethBottom];
             
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.3];
             
-            teethBottom.frame = CGRectMake(0.0f, 282.0f, 320.0f, 18.0f);
-            
+                        
+            [UIView animateWithDuration:0.285
+                                  delay: 0.0
+                                options: UIViewAnimationCurveLinear
+                             animations:^{
+                                 teethBottom.frame = CGRectMake(0.0f, 282.0f, 320.0f, 18.0f);
+                             }
+                             completion:^(BOOL finished){
+                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                             }];
             [UIView commitAnimations];
         }
         
@@ -409,13 +419,7 @@ dispatch_queue_t fetchQ = NULL;
                                  teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
                              }
                              completion:^(BOOL finished){
-                                 [UIView animateWithDuration:0.0
-                                                       delay: 0.0
-                                                     options:UIViewAnimationCurveEaseOut
-                                                  animations:^{
-                                                      [teethBottom removeFromSuperview];
-                                                  }
-                                                  completion:nil];
+                                 [teethBottom removeFromSuperview];
                              }];
             [UIView commitAnimations];
         }
