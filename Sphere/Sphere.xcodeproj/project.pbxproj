@@ -102,6 +102,14 @@
 		2687044C166D015E00B7525E /* stine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26870442166D015E00B7525E /* stine.jpg */; };
 		2687044D166D015E00B7525E /* user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 26870443166D015E00B7525E /* user_placeholder.png */; };
 		2687044E166D015E00B7525E /* user_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26870444166D015E00B7525E /* user_placeholder.jpg */; };
+		26870451166DF6B400B7525E /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26870450166DF6B400B7525E /* SettingsCell.m */; };
+		2687045C166DFD3100B7525E /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687045A166DFD3100B7525E /* plus.png */; };
+		2687045D166DFD3100B7525E /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687045B166DFD3100B7525E /* plus@2x.png */; };
+		26870460166DFE6200B7525E /* cogwheel_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687045E166DFE6200B7525E /* cogwheel_settings.png */; };
+		26870461166DFE6200B7525E /* cogwheel_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2687045F166DFE6200B7525E /* cogwheel_settings@2x.png */; };
+		26870467166E10D300B7525E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26870466166E10D300B7525E /* ProfileViewController.m */; };
+		2687046A166E117500B7525E /* NewModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26870469166E117500B7525E /* NewModeViewController.m */; };
+		2687046D166E11A100B7525E /* EditModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687046C166E11A100B7525E /* EditModeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +243,18 @@
 		26870442166D015E00B7525E /* stine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stine.jpg; sourceTree = "<group>"; };
 		26870443166D015E00B7525E /* user_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_placeholder.png; sourceTree = "<group>"; };
 		26870444166D015E00B7525E /* user_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user_placeholder.jpg; sourceTree = "<group>"; };
+		2687044F166DF6B300B7525E /* SettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCell.h; sourceTree = "<group>"; };
+		26870450166DF6B400B7525E /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
+		2687045A166DFD3100B7525E /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		2687045B166DFD3100B7525E /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
+		2687045E166DFE6200B7525E /* cogwheel_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cogwheel_settings.png; sourceTree = "<group>"; };
+		2687045F166DFE6200B7525E /* cogwheel_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cogwheel_settings@2x.png"; sourceTree = "<group>"; };
+		26870465166E10D300B7525E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		26870466166E10D300B7525E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		26870468166E117500B7525E /* NewModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewModeViewController.h; sourceTree = "<group>"; };
+		26870469166E117500B7525E /* NewModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewModeViewController.m; sourceTree = "<group>"; };
+		2687046B166E11A100B7525E /* EditModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditModeViewController.h; sourceTree = "<group>"; };
+		2687046C166E11A100B7525E /* EditModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditModeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +401,10 @@
 		26342975166936EE00280B39 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				2687045E166DFE6200B7525E /* cogwheel_settings.png */,
+				2687045F166DFE6200B7525E /* cogwheel_settings@2x.png */,
+				2687045A166DFD3100B7525E /* plus.png */,
+				2687045B166DFD3100B7525E /* plus@2x.png */,
 				26870421166C318200B7525E /* back_button.png */,
 				26870422166C318200B7525E /* back_button@2x.png */,
 				2687040A166BCB7400B7525E /* cogwheel.png */,
@@ -590,6 +614,12 @@
 		26870408166BBC1500B7525E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2687046B166E11A100B7525E /* EditModeViewController.h */,
+				2687046C166E11A100B7525E /* EditModeViewController.m */,
+				26870468166E117500B7525E /* NewModeViewController.h */,
+				26870469166E117500B7525E /* NewModeViewController.m */,
+				26870465166E10D300B7525E /* ProfileViewController.h */,
+				26870466166E10D300B7525E /* ProfileViewController.m */,
 				26870412166BEC7700B7525E /* SettingsViewController.h */,
 				26870413166BEC7700B7525E /* SettingsViewController.m */,
 				26342984166947B600280B39 /* SphereListViewController.h */,
@@ -603,6 +633,8 @@
 		26870409166BBC5200B7525E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2687044F166DF6B300B7525E /* SettingsCell.h */,
+				26870450166DF6B400B7525E /* SettingsCell.m */,
 				26342990166952A700280B39 /* SphereUserCell.h */,
 				26342991166952A700280B39 /* SphereUserCell.m */,
 			);
@@ -739,6 +771,10 @@
 				2687044C166D015E00B7525E /* stine.jpg in Resources */,
 				2687044D166D015E00B7525E /* user_placeholder.png in Resources */,
 				2687044E166D015E00B7525E /* user_placeholder.jpg in Resources */,
+				2687045C166DFD3100B7525E /* plus.png in Resources */,
+				2687045D166DFD3100B7525E /* plus@2x.png in Resources */,
+				26870460166DFE6200B7525E /* cogwheel_settings.png in Resources */,
+				26870461166DFE6200B7525E /* cogwheel_settings@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +831,10 @@
 				268703CE166AD90C00B7525E /* UIView+CustomTitleView.m in Sources */,
 				268703E4166BA10000B7525E /* EGORefreshTableHeaderView.m in Sources */,
 				26870414166BEC7700B7525E /* SettingsViewController.m in Sources */,
+				26870451166DF6B400B7525E /* SettingsCell.m in Sources */,
+				26870467166E10D300B7525E /* ProfileViewController.m in Sources */,
+				2687046A166E117500B7525E /* NewModeViewController.m in Sources */,
+				2687046D166E11A100B7525E /* EditModeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

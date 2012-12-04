@@ -7,12 +7,15 @@
 //
 
 #import "SettingsViewController.h"
+#import "SettingsCell.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+
+NSArray *cellArray;
 
 #pragma mark IBActions
 
@@ -41,6 +44,12 @@
     
     self.settingsTableView.dataSource = self;
     self.settingsTableView.delegate = self;
+    
+    NSArray *modesSection = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"New mode", @"title", @"plus.png", @"image", nil],
+                                                             [[NSDictionary alloc] initWithObjectsAndKeys:@"Edit modes", @"title", @"cogwheel_settings.png", @"image", nil], nil];
+    NSArray *profileSection = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"Profile", @"title", @"cogwheel_settings.png", @"image", nil], nil];
+    
+    cellArray = [[NSArray alloc] initWithObjects:modesSection, profileSection, nil];
     
     [self setupMainLayout];
 }
@@ -81,8 +90,6 @@
 
 #pragma mark UITableViewDataSource
 
-#pragma mark UITableViewDataSource
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -90,29 +97,68 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Section title";
+    if (section == 0) {
+        return @"Modes";
+    }
+    return @"Profile";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (section == 0) {
+        return 2;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"settingsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[SettingsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.textColor = [UIColor darkGrayColor];
-    cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
-    cell.textLabel.text = @"Title";
+    NSDictionary *cellInfo = [[cellArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    
+    cell.buttonLabel.text = [cellInfo objectForKey:@"title"];
+    cell.buttonImage.image = [UIImage imageNamed:[cellInfo objectForKey:@"image"]];
     
     return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.bounds.size.width, 40.0f)];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.bounds.size.width, 40.0f)];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.textColor = [[ConstantsHandler sharedConstants] COLOR_WHITE];
+    headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    headerLabel.font = [[ConstantsHandler sharedConstants] FONT_HEADER];
+    headerLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [headerView addSubview:headerLabel];
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *segueIdentifiers = [[NSArray alloc] initWithObjects:[[NSArray alloc] initWithObjects:@"newModeSegue", @"editModeSegue", nil],
+                                                                 [[NSArray alloc] initWithObjects:@"profileSegue", nil],
+                                                                 nil];
+    
+    [self performSegueWithIdentifier:[[segueIdentifiers objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] sender:self];
 }
 
 @end

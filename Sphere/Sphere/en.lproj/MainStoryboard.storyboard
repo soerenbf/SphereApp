@@ -267,16 +267,43 @@
                                     <constraint firstAttribute="width" constant="220" id="hgF-a2-Zc2"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="settingsCell" id="w4E-bX-aZm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="settingsCell" id="w4E-bX-aZm" customClass="SettingsCell">
                                         <rect key="frame" x="0.0" y="46" width="220" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="200" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxv-hb-gSk">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="c83-CF-EhC"/>
+                                                        <constraint firstAttribute="height" constant="30" id="hPb-an-Bmx"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNY-M0-dJ5">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="132" id="Ln6-bj-HCb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="gxv-hb-gSk" firstAttribute="leading" secondItem="w4E-bX-aZm" secondAttribute="leading" constant="20" type="default" id="4do-mH-Ahd"/>
+                                            <constraint firstItem="gxv-hb-gSk" firstAttribute="centerY" secondItem="w4E-bX-aZm" secondAttribute="centerY" type="default" id="DU6-NJ-Y2w"/>
+                                            <constraint firstItem="wNY-M0-dJ5" firstAttribute="top" secondItem="w4E-bX-aZm" secondAttribute="top" constant="12" id="Wcf-IP-US1"/>
+                                            <constraint firstItem="wNY-M0-dJ5" firstAttribute="leading" secondItem="gxv-hb-gSk" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="atN-XP-eG0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="buttonImage" destination="gxv-hb-gSk" id="lQ5-St-b5g"/>
+                                            <outlet property="buttonLabel" destination="wNY-M0-dJ5" id="5EG-gS-sFp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -292,11 +319,59 @@
                     <navigationItem key="navigationItem" id="1iu-YW-tVu"/>
                     <connections>
                         <outlet property="settingsTableView" destination="Pug-DB-rny" id="JT8-Ln-jeH"/>
+                        <segue destination="x3S-d7-eGN" kind="push" identifier="profileSegue" id="nvj-gm-sPP"/>
+                        <segue destination="mAT-cy-vu5" kind="push" identifier="editModeSegue" id="NUc-gQ-woH"/>
+                        <segue destination="z6D-AZ-HmT" kind="push" identifier="newModeSegue" id="2of-6S-HMH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic4-Ds-Inm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1556" y="186"/>
+            <point key="canvasLocation" x="1555" y="186"/>
+        </scene>
+        <!--New Mode View Controller-->
+        <scene sceneID="1DD-mP-CjN">
+            <objects>
+                <viewController id="z6D-AZ-HmT" customClass="NewModeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x1s-U4-3Cz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xjh-dN-26w"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WSF-Au-Oen" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2031" y="-520"/>
+        </scene>
+        <!--Edit Mode View Controller-->
+        <scene sceneID="ky6-WJ-Tfh">
+            <objects>
+                <viewController id="mAT-cy-vu5" customClass="EditModeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S8o-YX-LSk">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lWO-Aa-IeQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ofa-58-nnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2031" y="186"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="wkV-1c-VvN">
+            <objects>
+                <viewController id="x3S-d7-eGN" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nJQ-SE-dVT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fvl-dn-E1V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QxC-t7-5KR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2036" y="901"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uX0-Yi-JlI">
@@ -322,6 +397,63 @@
         <image name="menu_bg.png" width="260" height="457"/>
         <image name="sphere_logo.png" width="185" height="247"/>
     </resources>
+    <classes>
+        <class className="EditModeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditModeViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NewModeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewModeViewController.h"/>
+        </class>
+        <class className="ProfileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
+        </class>
+        <class className="SettingsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buttonImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="buttonLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SphereListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="menuNavigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="menuNavigationItem" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="menuTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="menuTableViewBackground" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuTags" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="menuUserPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="menuUsername" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sphereUserTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SphereUserCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereUserCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="accessory" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="expandView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="smiley" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tagsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userPicture" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SphereViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SphereViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonAction:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

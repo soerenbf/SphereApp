@@ -456,9 +456,9 @@ dispatch_queue_t fetchQ = NULL;
         teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
         [cell.expandView addSubview:teethBottom];
         
-        [UIView animateWithDuration:0.30
+        [UIView animateWithDuration:0.3
                               delay: 0.0
-                            options: UIViewAnimationCurveEaseIn
+                            options: UIViewAnimationCurveLinear
                          animations:^{
                              teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
                          }
@@ -472,7 +472,7 @@ dispatch_queue_t fetchQ = NULL;
         if ([[cell.expandView subviews] count] > 6) {
             UIView *teethBottom = [[cell.expandView subviews] lastObject];
             
-            [UIView animateWithDuration:0.285
+            [UIView animateWithDuration:0.29
                                   delay: 0.0
                                 options: UIViewAnimationCurveLinear
                              animations:^{
