@@ -418,59 +418,55 @@ dispatch_queue_t fetchQ = NULL;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 1) {
-        SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
-                
-        if ([self.selectedRow isEqual:indexPath]) {
-            cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
-            self.selectedRow = nil;
-            
-            if ([[cell.expandView subviews] count] > 6) {
-                UIView *teethBottom = [[cell.expandView subviews] lastObject];
-                
-                [UIView animateWithDuration:0.285
-                                      delay: 0.0
-                                    options: UIViewAnimationCurveLinear
-                                 animations:^{
-                                     teethBottom.frame = CGRectMake(0.0f, 60.0f, 320.0f, 18.0f);
-                                 }
-                                 completion:^(BOOL finished){
-                                     cell.expandView.backgroundColor = [UIColor clearColor];
-                                     while ([[cell.expandView subviews] count] > 6) {
-                                         [[[cell.expandView subviews] lastObject] removeFromSuperview];
-                                     }
-                                 }];
-                [UIView commitAnimations];
-            }
-        } else {
-            self.selectedRow = indexPath;
-            cell.accessory.image = [UIImage imageNamed:@"cell_accessory_up.png"];
-            cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
-            
-            UIView *teethBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 18.0f)];
-            teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
-            [cell.expandView addSubview:teethBottom];
-            
-            [UIView animateWithDuration:0.30
-                                  delay: 0.0
-                                options: UIViewAnimationCurveEaseIn
-                             animations:^{
-                                 teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
-                             }
-                             completion:^(BOOL finished){
-                                 [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
-                             }];
-            [UIView commitAnimations];
-        }
-        
-        [tableView beginUpdates];
-        [tableView endUpdates];
+        [self tableView:tableView animateCellAtIndexPath:indexPath expand:![self.selectedRow isEqual:indexPath]];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 1) {
-        SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [self tableView:tableView animateCellAtIndexPath:indexPath expand:NO];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == 1) {
+        if(self.selectedRow && [self.selectedRow isEqual:indexPath]) {
+            return 300;
+        }
+        return 60;
+    }
+    return 44;
+}
+
+#pragma mark animation
+
+- (void)tableView:(UITableView *)tableView animateCellAtIndexPath:(NSIndexPath *)indexPath expand:(BOOL)expand
+{
+    SphereUserCell *cell = (SphereUserCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    if (expand) {
+        self.selectedRow = indexPath;
+        
+        cell.accessory.image = [UIImage imageNamed:@"cell_accessory_up.png"];
+        cell.expandView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_teeth.png"]];
+        
+        UIView *teethBottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 60.0f, 320.0f, 18.0f)];
+        teethBottom.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shark_bottom.png"]];
+        [cell.expandView addSubview:teethBottom];
+        
+        [UIView animateWithDuration:0.30
+                              delay: 0.0
+                            options: UIViewAnimationCurveEaseIn
+                         animations:^{
+                             teethBottom.frame = CGRectMake(0.0f, 283.0f, 320.0f, 18.0f);
+                         }
+                         completion:^(BOOL finished){
+                             [self.sphereUserTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                         }];
+        [UIView commitAnimations];
+    }else{
         cell.accessory.image = [UIImage imageNamed:@"cell_accessory_down.png"];
         
         if ([[cell.expandView subviews] count] > 6) {
@@ -489,24 +485,13 @@ dispatch_queue_t fetchQ = NULL;
                                  }
                              }];
             [UIView commitAnimations];
+            
+            self.selectedRow = nil;
         }
-        
-        self.selectedRow = nil;
-        
-        [tableView beginUpdates];
-        [tableView endUpdates];
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView.tag == 1) {
-        if(self.selectedRow && [self.selectedRow isEqual:indexPath]) {
-            return 300;
-        }
-        return 60;
-    }
-    return 44;
+    
+    [tableView beginUpdates];
+    [tableView endUpdates];
 }
 
 #pragma mark Data Source Loading / Reloading Methods
